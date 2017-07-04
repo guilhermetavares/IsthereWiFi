@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block header %}
+	{% if user.is_authenticated %}
+		<ul>
+			<a href="">Minhas Avaliações</a>
+			<a href="">Sair</a>
+		</ul>
+	{% else %}
+		<ul>
+			<a href="">Login</a>
+			<a href="{% url 'accounts_registration' %}">Cadastro</a>
+		</ul>
+	{% endif %}
+{% endblock header %}
