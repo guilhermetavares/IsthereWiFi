@@ -31,6 +31,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
