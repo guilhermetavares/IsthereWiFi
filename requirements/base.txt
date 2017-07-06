@@ -1,0 +1,4 @@
+Django==1.10.5
+django-localflavor==1.5.2
+django-widget-tweaks==1.4.1
+social-auth-app-django==1.2.0
