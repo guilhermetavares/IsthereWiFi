@@ -8,4 +8,4 @@ class LoginRequiredMixin(View):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated():
             return redirect('{0}?next={1}'.format(reverse('accounts_login'), urlquote(request.get_full_path())))
-        return super(ProtectedMixin, self).dispatch(request, *args, **kwargs)
+        return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)

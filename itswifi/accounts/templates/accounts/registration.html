@@ -1,9 +1,15 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
-{% block content %}
-	<form method="post" action=".">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button>Cadastrar</button>
-	</form>
-{% endblock content %}
+{% block container %}
+	<form class="form-inline" action='.' method='post'>
+	{% csrf_token %}
+	{% for field in form %}
+	    <div class="form-group {% if field.errors %}has-error{%endif%}">
+	    	{% render_field field class="form-control" placeholder=field.label %}
+	    </div>
+	{% endfor %}
+
+	<button>Nova avaliação</button>
+</form>
+{% endblock container %}

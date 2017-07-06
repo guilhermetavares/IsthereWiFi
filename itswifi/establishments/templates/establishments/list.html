@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block container %}
+	<p class="mb-3"><a class="btn btn-primary btn-lg" href="{% url 'establishments_create' %}" role="button">Quero adicionar um novo estabelecimento</a></p>
+
+	<div class="row">
+		{% for establishment in object_list %}
+			{% include "establishments/includes/item.html" %}
+		{% endfor %}
+	</div>
+{% endblock container %}

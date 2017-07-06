@@ -1,0 +1,11 @@
+<div class="col-md-4">
+	<h2>{{ establishment.name }}</h2>
+	<h4>{{ establishment.get_category_display }}</h4>
+	<h4>Avaliações: {{ establishment.evaluates.count }}</h4>
+	<p>
+		{{ establishment.address }} <br>
+		{{ establishment.city }} - {{ establishment.state }} <br>
+		{{ establishment.country }}
+	</p>
+	<p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+</div>

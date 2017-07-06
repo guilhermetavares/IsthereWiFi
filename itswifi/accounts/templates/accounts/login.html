@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block container %}
+<form class="form-inline" action='.' method='post'>
+	{% csrf_token %}
+	<label class="sr-only" for="inlineFormInput">Email</label>
+	<input name="username" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Login">
+
+	<label class="sr-only" for="inlineFormInputGroup">Senha</label>
+	<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+	<input name="password" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Senha">
+	</div>
+	<button type="submit" class="btn btn-primary">Entrar</button>
+
+	{{ form.errors }}
+</form>
+{% endblock container %}

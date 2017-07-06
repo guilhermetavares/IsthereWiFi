@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 # Application definition
 
@@ -37,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'social_django',
+    'widget_tweaks',
 
     'accounts',
     'establishments',
@@ -55,6 +62,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'itswifi.urls'
 
 AUTH_USER_MODEL = 'accounts.User'
+SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'AIzaSyCEMiGkYWjwSoAjLyBv6Iososqy_zxua4o'
 
 TEMPLATES = [
     {
