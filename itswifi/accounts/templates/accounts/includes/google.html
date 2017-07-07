@@ -1,0 +1,24 @@
+<meta name="google-signin-client_id" content="136750637518-id43so696c00a5m9i8puiodeifehacas.apps.googleusercontent.com">
+
+<script>
+    function onSuccess(googleUser) {
+      window.location = '{% url 'accounts_google_login' %}?name=' + googleUser.getBasicProfile().getName() + '&email=' + googleUser.getBasicProfile().getEmail();
+
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>

@@ -4,14 +4,13 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
-
-from datetime import datetime
+from django.utils import timezone
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(_('Nome'), max_length=50)
     email = models.EmailField(unique=True)
-    create_at = models.DateTimeField(_('Criado em'), default=datetime.now)
+    create_at = models.DateTimeField(_('Criado em'), default=timezone.now)
     USERNAME_FIELD = 'email'
 
     objects = UserManager()

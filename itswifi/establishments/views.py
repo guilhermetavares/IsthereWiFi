@@ -15,7 +15,7 @@ class EstablishmentListView(ListView):
 
     def get_queryset(self):
         if self.request.GET.get('q'):
-            return Establishment.objects.filters(name__icontains=self.request.GET.get('q'))
+            return Establishment.objects.filter(name__icontains=self.request.GET.get('q'))
         return Establishment.objects.all()
 
 

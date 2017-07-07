@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block extra_head %}
+{% include "accounts/includes/facebook.html" %}
+{% include "accounts/includes/google.html" %}
+{% endblock extra_head %}
 
 {% block container %}
 <form class="form-inline" action='.' method='post'>
@@ -15,4 +19,9 @@
 
 	{{ form.errors }}
 </form>
+
+<div id="my-signin2"></div>
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
 {% endblock container %}

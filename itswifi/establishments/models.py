@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from django.db import models
+from django.utils import timezone
 
 from localflavor.br.models import BRStateField
 
@@ -16,6 +17,8 @@ class Establishment(models.Model):
         (4, _('Livraria')),
         (5, _('Outro')),
     )
+    zip_code = models.CharField(_('CEP'), max_length=10)
+    number = models.IntegerField(_('Número'))
     name = models.CharField(_('Nome'), max_length=250)
     address = models.CharField(_('Endereço'), max_length=250)
     city = models.CharField(_('Cidade'), max_length=64)
@@ -24,6 +27,8 @@ class Establishment(models.Model):
     country = models.CharField(_('País'), max_length=50)
     category = models.IntegerField(_('Tipo'), default=1, choices=ESTABLISHMENT_CATEGORY)
 
+    create_at = models.DateTimeField(_('Criado em'), default=timezone.now)
+    
     def get_absolute_url(self):
         return reverse('establishments_detail', args=[self.pk,])
 
@@ -44,3 +49,6 @@ class EstablishmentEvaluation(models.Model):
     comfortable = models.IntegerField()
     noise = models.IntegerField()
     geral = models.IntegerField()
+
+    create_at = models.DateTimeField(_('Criado em'), default=timezone.now)
+    

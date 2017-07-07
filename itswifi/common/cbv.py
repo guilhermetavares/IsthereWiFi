@@ -2,6 +2,7 @@
 from django.views.generic import View
 from django.utils.http import urlquote
 from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
 
 
 class LoginRequiredMixin(View):

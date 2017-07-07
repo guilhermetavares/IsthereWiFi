@@ -1,7 +1,6 @@
 <div class="col-md-4">
-	<h2>{{ establishment.name }}</h2>
-	<h4>{{ establishment.get_category_display }}</h4>
-	<h4>Avaliações: {{ establishment.evaluates.count }}</h4>
+	<h2>{{ establishment.name }} / {{ establishment.get_category_display }}</h2>
+	<p>Avaliações: {{ establishment.evaluates.count }}</p>
 	<p>
 		{{ establishment.address }} <br>
 		{{ establishment.city }} - {{ establishment.state }} <br>
