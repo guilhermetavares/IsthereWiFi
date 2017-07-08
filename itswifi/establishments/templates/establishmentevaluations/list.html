@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block container %}
+	<div class="row">
+		{% for evaluation in object_list %}
+			{% include "establishmentevaluations/includes/item.html" with show_establishment=1 %}
+		{% endfor %}
+	</div>
+{% endblock container %}

@@ -8,10 +8,10 @@ class EstablishmentForm(forms.ModelForm):
 	
 	class Meta:
 		model = Establishment
-		fields = ('name', 'address', 'city', 'address', 'state', 'country', 'category')
+		exclude = ('create_at', )
 
 
 class EstablishmentEvaluationForm(forms.ModelForm):
     class Meta:
         model = EstablishmentEvaluation
-        exclude = ('user', 'establishment')
+        exclude = ('user', 'establishment', 'create_at')

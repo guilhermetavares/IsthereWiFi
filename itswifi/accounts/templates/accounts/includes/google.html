@@ -2,8 +2,14 @@
 
 <script>
     function onSuccess(googleUser) {
-      window.location = '{% url 'accounts_google_login' %}?name=' + googleUser.getBasicProfile().getName() + '&email=' + googleUser.getBasicProfile().getEmail();
-
+        {% if auth_and_login %}
+         window.location = '{% url 'accounts_google_login' %}?email=' + googleUser.getBasicProfile().getEmail();
+        {% else %}
+        document.getElementById('id_password').value = googleUser.El;
+        document.getElementById('id_name').value = googleUser.getBasicProfile().getName();
+        document.getElementById('id_email').value = googleUser.getBasicProfile().getEmail();
+        document.getElementById('message').innerHTML = '<p class="text-success">Conta do google vinculada com sucesso, confirme seu cadastro!</p>';
+        {% endif %}
     }
     function onFailure(error) {
       console.log(error);

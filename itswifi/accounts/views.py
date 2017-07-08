@@ -2,22 +2,30 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
 from django.views.generic import FormView, View
+from django.contrib.auth import logout as django_logout
 from django.contrib.auth import authenticate, login as django_login
 
 from .models import User
 from .forms import LoginForm, RegistrationForm
 
 
+class LogOutView(View):
+
+    def get(self, request, *args, **kwargs):
+        django_logout(request)
+        return redirect('/')
+
+
 class GoogleLoginView(View):
 
-    def get(self, request, *args, **kwargs):      
-        name = request.GET.get('name')
+    def get(self, request, *args, **kwargs):
         email = request.GET.get('email')
 
         user = User.objects.filter(email=email).first()
         if user is None:
-            user = User.objects.create(name=name, email=email)
+            return redirect('accounts_registration')
 
         django_login(self.request, user)
         return redirect(self.request.GET.get('next', '/'))

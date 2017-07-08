@@ -12,8 +12,6 @@
       testAPI();
     } else {
       // The person is not logged into your app or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
     }
   }
 
@@ -64,7 +62,13 @@
 
   function testAPI() {
     FB.api('/me', function(response) {
-    	window.location = '{% url 'accounts_fb_login' %}?name=' + response.name + '&facebook=' + response.id;
+
+      document.getElementById('id_password').value = response.id;
+      document.getElementById('id_name').value = response.name;
+      document.getElementById('id_email').value = response.id + '@facebook.com.br';
+      document.getElementById('message').innerHTML = '<p class="text-success">Conta do facebook vinculada com sucesso, confirme seu cadastro!</p>';
+
+    	// window.location = '{% url 'accounts_fb_login' %}?name=' + response.name + '&facebook=' + response.id;
     });
   }
 </script>

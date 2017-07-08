@@ -1,10 +1,12 @@
 <div class="col-md-4">
-	<h2>{{ establishment.name }} / {{ establishment.get_category_display }}</h2>
-	<p>Avaliações: {{ establishment.evaluates.count }}</p>
+	<h2>{{ establishment.name }}</h2>
+	<h3>{{ establishment.get_category_display }}</h3>
+	<h5>Avaliações: {{ establishment.evaluates.count }}</h5>
 	<p>
-		{{ establishment.address }} <br>
+		{{ establishment.zip_code }} <br>
+		{{ establishment.address }}, {{ establishment.number }} <br>
 		{{ establishment.city }} - {{ establishment.state }} <br>
 		{{ establishment.country }}
 	</p>
-	<p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+	<p><a class="btn btn-primary" href="{% url 'establishments_detail' establishment.id %}" role="button">View details »</a></p>
 </div>

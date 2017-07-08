@@ -1,27 +1,28 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block extra_head %}
-{% include "accounts/includes/facebook.html" %}
-{% include "accounts/includes/google.html" %}
+{% include "accounts/includes/facebook.html" with auth_and_login=1 %}
+{% include "accounts/includes/google.html" with auth_and_login=1 %}
 {% endblock extra_head %}
 
 {% block container %}
-<form class="form-inline" action='.' method='post'>
-	{% csrf_token %}
-	<label class="sr-only" for="inlineFormInput">Email</label>
-	<input name="username" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Login">
-
-	<label class="sr-only" for="inlineFormInputGroup">Senha</label>
-	<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-	<input name="password" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Senha">
-	</div>
-	<button type="submit" class="btn btn-primary">Entrar</button>
-
-	{{ form.errors }}
-</form>
+<form action='.' method='post'>
+		{% csrf_token %}
+		{% for field in form %}
+		    <div class="form-group {% if field.errors %}has-error{%endif%}">
+		    	{% if field.label == 'Password' %}
+		    		<input class="form-control" type="password" id="id_password" name="password" placeholder="Senha" value="{{ form.password.value|default:"" }}">
+		    	{% else %}
+		    		{% render_field field class="form-control" placeholder=field.label %}
+		    	{% endif %}
+		    </div>
+		{% endfor %}
+<button class="btn btn-primary btn-lg">Login</button>
+	</form>
 
 <div id="my-signin2"></div>
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button data-size="large" size="medium" scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
 {% endblock container %}

@@ -1,9 +1,22 @@
-<h2>{{ establishment.name }}</h2>
-	<h4>{{ establishment.get_category_display }}</h4>
-	<h4>Avaliações: {{ establishment.evaluates.count }}</h4>
+<div class="col-md-4">
+	{% if show_establishment %}
+		<p>{{ evaluation.establishment.name }} </p>
+	{% endif %}
+	<p>realizada em <b>{{ evaluation.create_at }}</b></p>
 	<p>
-		{{ establishment.address }} <br>
-		{{ establishment.city }} - {{ establishment.state }} <br>
-		{{ establishment.country }}
+		Internet: <b>{{ evaluation.internet_rating }}</b> <br>
+		Atendimento: <b>{{ evaluation.customer_service }}</b><br>
+		Espaço: <b>{{ evaluation.price }}</b><br>
+		Barulho: <b>{{ evaluation.noise }}</b><br>
+		Geral: <b>{{ evaluation.geral }}</b>
 	</p>
-	<p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+	<p>
+		Sobre a Internet: {{ evaluation.internet_password }}
+	</p>
+	<p>
+		Sobre a Comida: {{ evaluation.foods }}
+	</p>
+	<p>
+		Sobre a Bebida: {{ evaluation.drinks }}
+	</p>
+</div>

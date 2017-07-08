@@ -1,15 +1,40 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 
-{% block container %}
-	<form class="form-inline" action='.' method='post'>
-	{% csrf_token %}
-	{% for field in form %}
-	    <div class="form-group {% if field.errors %}has-error{%endif%}">
-	    	{% render_field field class="form-control" placeholder=field.label %}
-	    </div>
-	{% endfor %}
+{% block extra_head %}
+{% include "accounts/includes/google.html" %}
+{% include "accounts/includes/facebook.html" %}
+{% endblock extra_head %}
 
-	<button>Nova avaliação</button>
-</form>
+{% block container %}
+	<h2>Cadastre-se</h2>
+
+	<div id="message"></div>
+	
+	<form action='.' method='post'>
+		{% csrf_token %}
+		{% for field in form %}
+		   <div class="form-group {%if field.errors %}has-error{%endif%}">
+		    	{% if field.label == 'Password' %}
+		    		<input class="form-control" type="password" id="id_password" name="password" placeholder="Senha" value="{{ form.password.value|default:"" }}">
+		    	{% else %}
+		    		{% render_field field class="form-control" placeholder=field.label %}
+		    	{% endif %}
+		    </div>
+		{% endfor %}
+		<button class="btn btn-primary btn-lg">Cadastrar</button>
+	</form>
+	{% endwith %}
+
+<hr class="half-rule"/>
+
+<div>
+	<fb:login-button data-size="large" scope="public_profile,email" onlogin="checkLoginState();">
+	</fb:login-button>
+</div>
+
+<div id="my-signin2"></div>
+
+
+
 {% endblock container %}

@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView, FormView, CreateView
 
 from common.cbv import LoginRequiredMixin
 
-from .models import Establishment
+from .models import Establishment, EstablishmentEvaluation
 from .forms import EstablishmentForm, EstablishmentEvaluationForm
 
 
@@ -20,7 +20,7 @@ class EstablishmentListView(ListView):
 
 
 
-class EstablishmentDetailView(DetailView):
+class EstablishmentDetailView(LoginRequiredMixin, DetailView):
     template_name = 'establishments/detail.html'
     model = Establishment
 
@@ -41,9 +41,12 @@ class EstablishmentDetailView(DetailView):
         return super(EstablishmentDetailView, self).get(request, *args, **kwargs)
 
 
-class EstablishmentEvaluateView(LoginRequiredMixin, FormView):
-    template_name = 'establishments/detail.html'
-    model = Establishment
+class EstablishmentEvaluateListView(LoginRequiredMixin, ListView):
+    template_name = 'establishmentevaluations/list.html'
+    model = EstablishmentEvaluation
+
+    def get_queryset(self):
+        return EstablishmentEvaluation.objects.filter(user=self.request.user)
 
 
 class EstablishmentCreateView(LoginRequiredMixin, CreateView):

@@ -7,23 +7,25 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-      <a class="nav-link" href="/">Bem vindo, {{ user }}</a>
-      </li>
-
       {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Bem vindo, {{ user.name }}</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'establishmentevaluate_list' %}">Avaliações</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'establishments_list' %}">Estabelecimentos</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts_logout' %}">Sair</a>
+        </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts_login' %}">Login</a>
+          <a class="nav-link" href="{% url 'accounts_login' %}">Entrar</a>
         </li>
         <li class="nav-item">
-          <a href="{% url 'accounts_registration' %}">Cadastro</a>
+          <a class="nav-link" href="{% url 'accounts_registration' %}">Cadastro</a>
         </li>
       {% endif %}
     </ul>

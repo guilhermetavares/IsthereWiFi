@@ -3,15 +3,16 @@
 
 {% block container %}
 <h2>{{ establishment.name }}</h2>
-<h4>{{ establishment.get_category_display }}</h4>
-<h4>Avaliações: {{ establishment.evaluates.count }}</h4>
+<h3>{{ establishment.get_category_display }}</h3>
+<h5>Avaliações: {{ establishment.evaluates.count }}</h5>
 <p>
-	{{ establishment.address }} <br>
+	{{ establishment.zip_code }} <br>
+	{{ establishment.address }}, {{ establishment.number }} <br>
 	{{ establishment.city }} - {{ establishment.state }} <br>
 	{{ establishment.country }}
 </p>
-<p><a class="btn btn-primary" href="#" role="button">Nova Avaliação</a></p>
 
+<hr class="half-rule"/>
 
 <div class="row">
 	{% for evaluation in establishment.evaluates.all %}
@@ -19,16 +20,17 @@
 	{% endfor %}
 </div>
 
+<hr class="half-rule"/>
 
-<form class="form-inline" action='.' method='post'>
+<form action='.' method='post'>
+	<h4>Adicionar Avaliação</h4>
 	{% csrf_token %}
 	{% for field in form %}
 	    <div class="form-group {% if field.errors %}has-error{%endif%}">
 	    	{% render_field field class="form-control" placeholder=field.label %}
 	    </div>
 	{% endfor %}
-
-	<button>Nova avaliação</button>
+	<button type="submit" class="btn btn-primary">Cadastrar Avaliação</button>
 </form>
 
 {% endblock container %}
