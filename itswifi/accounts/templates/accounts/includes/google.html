@@ -1,4 +1,6 @@
-<meta name="google-signin-client_id" content="136750637518-id43so696c00a5m9i8puiodeifehacas.apps.googleusercontent.com">
+{% load common_tags %}
+
+<meta name="google-signin-client_id" content="{% get_settings GOOGLE_ID %}">
 
 <script>
     function onSuccess(googleUser) {

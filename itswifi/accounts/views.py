@@ -35,13 +35,11 @@ class FacebookLoginView(View):
     BASE_FORMAT_EMAIL = '{0}@login.facebook.com.br'
 
     def get(self, request, *args, **kwargs):      
-        name = request.GET.get('name')
-        facebook = request.GET.get('facebook')
-        email = self.BASE_FORMAT_EMAIL.format(facebook)
+        email = request.GET.get('email')
 
         user = User.objects.filter(email=email).first()
         if user is None:
-            user = User.objects.create(name=name, email=email)
+            return redirect('accounts_registration')
 
         django_login(self.request, user)
         return redirect(self.request.GET.get('next', '/'))
@@ -53,7 +51,6 @@ class LoginView(FormView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(LoginView, self).get_context_data(*args, **kwargs)
-        context['YOUR_CLIENT_ID'] = ''
         return context
 
     def form_valid(self, form):

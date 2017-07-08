@@ -18,10 +18,12 @@ from prettyconf import config
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = config("SECRET_KEY")
+
+FACEBOOK_ID = config("FACEBOOK_ID")
+GOOGLE_ID = config("GOOGLE_ID")
+
 DEBUG = config("DEBUG", default=False, cast=config.boolean)
 
-
-print(config('DATABASE_URL'))
 
 ALLOWED_HOSTS = []
 
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
 
+    'common',
     'accounts',
     'establishments',
 ]
