@@ -22,8 +22,6 @@ urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
 
-    url(r'^', include('social_django.urls', namespace='social')),
-
     url(r'^', include('accounts.urls')),
     url(r'^', include('establishments.urls')),
     url(r'^$', TemplateView.as_view(template_name='home.html')),
