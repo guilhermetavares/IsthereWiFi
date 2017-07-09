@@ -68,8 +68,10 @@
          window.location = '{% url 'accounts_fb_login' %}?email=' + response.id + '@facebook.com.br';
         {% else %}
           document.getElementById('id_password').value = response.id;
+          document.getElementById('id_password').style.display = "none";
           document.getElementById('id_name').value = response.name;
           document.getElementById('id_email').value = response.id + '@facebook.com.br';
+          document.getElementById('id_email').style.display = "none";
           document.getElementById('message').innerHTML = '<p class="text-success">Conta do facebook vinculada com sucesso, confirme seu cadastro!</p>';
         {% endif %}
     });
