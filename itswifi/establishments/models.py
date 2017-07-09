@@ -42,16 +42,16 @@ class EstablishmentEvaluation(models.Model):
     establishment = models.ForeignKey(Establishment, related_name='evaluates')
 
     internet_password = models.CharField(_('Possui Internet? Ela possui senha? Qual?'), max_length=50)
-    internet_rating = IntegerRangeField(_('Avalie a Internet'), min_value=0, max_value=5)
+    internet_rating = IntegerRangeField(_('Avalie a Internet (de 0 à 5)'), min_value=0, max_value=5)
 
     foods = models.TextField(_('Descreva os tipos de comidas são servidos?'))
     drinks = models.TextField(_('Descreva os tipos de bebidas são servidos?'))
 
-    customer_service = IntegerRangeField(_('Avalie o Atendimento'), min_value=1, max_value=5)
-    price = IntegerRangeField(_('Avalie o Preço'), min_value=1, max_value=5)
-    comfortable = IntegerRangeField(_('Avalie o Espaço'), min_value=1, max_value=5)
-    noise = IntegerRangeField(_('Avalie o Barulho'), min_value=1, max_value=5)
-    geral = IntegerRangeField(_('Avaliação Geral'), min_value=1, max_value=5)
+    customer_service = IntegerRangeField(_('Avalie o Atendimento (de 0 à 5)'), min_value=1, max_value=5)
+    price = IntegerRangeField(_('Avalie o Preço (de 0 à 5)'), min_value=1, max_value=5)
+    comfortable = IntegerRangeField(_('Avalie o Espaço (de 0 à 5)'), min_value=1, max_value=5)
+    noise = IntegerRangeField(_('Avalie o Barulho (de 0 à 5)'), min_value=1, max_value=5)
+    geral = IntegerRangeField(_('Avaliação Geral (de 0 à 5)'), min_value=1, max_value=5)
 
     create_at = models.DateTimeField(_('Criado em'), default=timezone.now)
     
